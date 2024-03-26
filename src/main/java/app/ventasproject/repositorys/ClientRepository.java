@@ -2,8 +2,9 @@ package app.ventasproject.repositorys;
 
 import app.ventasproject.models.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-public class ClientRepository extends JpaRepository<Client, Long> {
+@Repository
+public interface ClientRepository extends JpaRepository<Client, Long> {
 }

@@ -2,6 +2,8 @@ package app.ventasproject.repositorys;
 
 import app.ventasproject.models.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public class OrderItemRepository extends JpaRepository<OrderItem, Long> {
+@Repository
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 }
