@@ -20,6 +20,6 @@ public class OrderItem {
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "idOrder")
+    @JoinColumn(name = "idProduct")
     private Product product;
 }

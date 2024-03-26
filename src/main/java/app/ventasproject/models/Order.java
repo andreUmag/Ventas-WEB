@@ -18,6 +18,10 @@ public class Order {
     private LocalDateTime orderDate;
     private StatusEnum status; //poner un enum con los estados PENDIENTE, ENVIADO y ENTREGADO
 
+    @ManyToOne
+    @JoinColumn(name = "idClient", nullable = false)
+    private Client client;
+
     @OneToMany(mappedBy = "orders")
     List<Payment> payments;
 
@@ -26,8 +30,4 @@ public class Order {
 
     @OneToMany(mappedBy = "orders")
     List<OrderItem> orderItems;
-
-    @ManyToOne
-    @JoinColumn(name = "idClient", nullable = false)
-    private Client client;
 }
