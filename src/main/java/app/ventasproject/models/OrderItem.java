@@ -8,12 +8,18 @@ import lombok.*;
 @Setter
 @Getter
 @Builder
-public class ItemOrder {
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer quantity;
     private Float unitPrice;
-    //private idPedido
-    //private idUsuario son claves foraneas
+
+    @ManyToOne
+    @JoinColumn(name = "idOrder")
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "idOrder")
+    private Product product;
 }

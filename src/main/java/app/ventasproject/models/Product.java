@@ -2,6 +2,8 @@ package app.ventasproject.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +17,7 @@ public class Product {
     private String name;
     private Float price;
     private Integer stock;
+
+    @OneToMany(mappedBy = "products")
+    List<OrderDetail> orderDetails;
 }

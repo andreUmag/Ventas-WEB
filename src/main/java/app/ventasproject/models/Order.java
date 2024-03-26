@@ -24,6 +24,9 @@ public class Order {
     @OneToMany(mappedBy = "orders")
     List<OrderDetail> orderDetails;
 
+    @OneToMany(mappedBy = "orders")
+    List<OrderItem> orderItems;
+
     @ManyToOne
     @JoinColumn(name = "idClient", nullable = false)
     private Client client;
