@@ -15,7 +15,7 @@ public class Client {
     private Long id;
     private String name;
     @Column(unique = true)
-    private String gmail;
+    private String email;
     private String address;
 
     @OneToMany(mappedBy = "client")
