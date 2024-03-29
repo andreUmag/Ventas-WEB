@@ -1,4 +1,4 @@
-package app.ventasproject.service;
+package app.ventasproject.service.serviceInterface;
 import app.ventasproject.dto.client.ClientDto;
 import app.ventasproject.dto.client.ClientToSaveDto;
 import app.ventasproject.exception.NotFoundException;
@@ -11,4 +11,5 @@ public interface ClientService {
     List<ClientDto> getAllClient();
     ClientDto searchClientByEmail(String email) throws NotFoundException;
     ClientDto searchClientByAddresCity(String addres) throws NotFoundException;
+    void removeClient(Long id);
 }
