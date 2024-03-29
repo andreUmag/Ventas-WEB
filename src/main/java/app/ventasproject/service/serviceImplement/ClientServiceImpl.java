@@ -50,16 +50,15 @@ public class ClientServiceImpl implements ClientService {
     public ClientDto searchClientByEmail(String email) throws NotFoundException {
         Client client = clientRepository.findByEmail(email);
         if(Objects.isNull(client))
-            throw new NotFoundException("Usuario no encontrado");
+            throw new NotFoundException("No encontrado");
         return clientMapper.clientEntitytoClientDto(client);
     }
 
     @Override
     public ClientDto searchClientByAddresCity(String addres) throws NotFoundException {
         List<Client> clients = clientRepository.findClientByAddress(addres);
-        if(clients.isEmpty()) {
-            throw new NotFoundException("Usuario no encontrado");
-        }
+        if(Objects.isNull(clients))
+            throw new NotFoundException("No encontrado");
         return clientMapper.clientEntitytoClientDto(clients.get(0));
     }
 
