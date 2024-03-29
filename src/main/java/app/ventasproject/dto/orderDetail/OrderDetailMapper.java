@@ -7,5 +7,7 @@ import org.mapstruct.factory.Mappers;
 public interface OrderDetailMapper {
     OrderDetailMapper INSTANCE = Mappers.getMapper(OrderDetailMapper.class);
     OrderDetailDto orderDetailEntitytoOrderDetailDto(OrderDetail orderDetail);
+    OrderDetail orderDetailDtotoOrderDetailEntity(OrderDetailDto orderDetailDto);
+
     OrderDetail orderDetailDtotoOrderDetailEntity(OrderDetail orderDetailDto);
 }

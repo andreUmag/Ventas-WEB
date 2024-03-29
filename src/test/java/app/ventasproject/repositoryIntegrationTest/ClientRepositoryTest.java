@@ -37,7 +37,7 @@ public class ClientRepositoryTest {
 
         Client foundClient = clientRepository.findByEmail("ls@umg.com");
 
-        assertNotNull(foundClient);
+        assertNotNull(foundClient.getId());
         assertEquals("ls@umg.com", foundClient.getEmail());
     }
 

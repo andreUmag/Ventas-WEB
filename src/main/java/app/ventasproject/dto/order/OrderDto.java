@@ -11,13 +11,13 @@ import java.util.List;
 public record OrderDto(Long id, LocalDateTime orderDate, StatusEnum status,
                        List<PaymentDto> payments, List<OrderDetailDto> orderDetails,
                        List<OrderItemDto> orderItems) {
-    public List<PaymentDto> payments(){
+    public List<PaymentDto> getPayments(){
         return Collections.unmodifiableList(payments);
     }
-    public List<OrderDetailDto> orderDetails(){
+    public List<OrderDetailDto> getOrderDetails(){
         return Collections.unmodifiableList(orderDetails);
     }
-    public List<OrderItemDto> orderItems(){
+    public List<OrderItemDto> getOrderItems(){
         return Collections.unmodifiableList(orderItems);
     }
 }
