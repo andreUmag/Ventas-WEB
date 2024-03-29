@@ -11,6 +11,8 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Client findByEmail(String email);
     List<Client> findClientByAddress(String address);
+    @Query("SELECT c FROM Client c WHERE c.address like %?1%")
+    List<Client> findCityByAddress(String address);
     @Query("SELECT c FROM Client c WHERE c.name like ?1%")
     List<Client> NameClientFind(String name);
 }
