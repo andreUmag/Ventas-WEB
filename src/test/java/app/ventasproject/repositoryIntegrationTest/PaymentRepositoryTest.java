@@ -3,6 +3,7 @@ package app.ventasproject.repositoryIntegrationTest;
 import app.ventasproject.Enum.MethodsEnum;
 import app.ventasproject.Enum.StatusEnum;
 import app.ventasproject.models.Order;
+import app.ventasproject.models.OrderItem;
 import app.ventasproject.models.Payment;
 import app.ventasproject.repositorys.PaymentRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,8 +15,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @Testcontainers
@@ -65,5 +65,16 @@ public class PaymentRepositoryTest {
 
         assertNotNull(foundPayment);
         assertEquals(order1.getId(), foundPayment.getId());
+    }
+
+    @Test
+    void deletePaymentbyID(){
+        Payment payment = Payment.builder().build();
+
+        paymentRepository.save(payment);
+
+        paymentRepository.deleteById(payment.getId());
+
+        assertFalse(paymentRepository.existsById(payment.getId()));
     }
 }

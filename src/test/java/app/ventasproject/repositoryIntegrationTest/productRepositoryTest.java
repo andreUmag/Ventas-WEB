@@ -1,5 +1,6 @@
 package app.ventasproject.repositoryIntegrationTest;
 
+import app.ventasproject.models.Payment;
 import app.ventasproject.models.Product;
 import app.ventasproject.repositorys.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -85,5 +86,16 @@ public class productRepositoryTest{
 
         assertEquals(1, products.size());
         assertEquals("test",products.get(0).getName());
+    }
+
+    @Test
+    void deletePaymentbyID(){
+        Product product = Product.builder().build();
+
+        productRepository.save(product);
+
+        productRepository.deleteById(product.getId());
+
+        assertFalse(productRepository.existsById(product.getId()));
     }
 }

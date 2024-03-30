@@ -18,7 +18,7 @@ public class Payment {
     private LocalDateTime datePayment;
     private MethodsEnum method;//se usara un enum con los metodos de pago
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "idOrder")
     private Order order;
 }

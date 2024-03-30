@@ -22,8 +22,8 @@ public class Order {
     @JoinColumn(name = "idClient", nullable = false)
     private Client client;
 
-    @OneToMany(mappedBy = "orders")
-    List<Payment> payments;
+    @OneToOne(mappedBy = "order")
+    Payment payment;
 
     @OneToMany(mappedBy = "orders")
     List<OrderDetail> orderDetails;

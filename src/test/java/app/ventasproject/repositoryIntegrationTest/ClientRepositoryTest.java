@@ -75,4 +75,33 @@ public class ClientRepositoryTest {
         assertEquals(1,foundClients.size());
         assertEquals("len", foundClients.get(0).getName());
     }
+
+    @Test
+    void deleteClientbyID(){
+        Client client1 = Client.builder()
+                .id(1L)
+                .name("len")
+                .email("ls@umg.com")
+                .address("P.sherman calle wallaby 42 Sydney").build();
+        clientRepository.save(client1);
+
+        clientRepository.deleteById(1L);
+
+        assertFalse(clientRepository.existsById(1L));
+    }
+
+    @Test
+    void updateEmailClientbyID(){
+        Client client1 = Client.builder()
+                .id(1L)
+                .name("len")
+                .email("ls@umg.com")
+                .address("P.sherman calle wallaby 42 Sydney").build();
+        clientRepository.save(client1);
+
+        clientRepository.findById(1L).get().setEmail("ls21@umg.com");
+
+        assertEquals("ls21@umg.com",clientRepository.findById(1L).get().getEmail());
+        assertEquals("len",clientRepository.findById(1L).get().getName());
+    }
 }

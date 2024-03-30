@@ -14,6 +14,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @DataJpaTest
 @Testcontainers
@@ -62,5 +63,16 @@ public class OrderItemRepositoryTest {
         List<OrderItem> foundItems = orderItemRepository.findOrderItemByProduct(orderItem1.getProduct());
 
         assertEquals(1, foundItems.size());
+    }
+
+    @Test
+    void deleteOrderItembyID(){
+        OrderItem orderItem1 = OrderItem.builder().build();
+
+        orderItemRepository.save(orderItem1);
+
+        orderItemRepository.deleteById(orderItem1.getId());
+
+        assertFalse(orderItemRepository.existsById(orderItem1.getId()));
     }
 }

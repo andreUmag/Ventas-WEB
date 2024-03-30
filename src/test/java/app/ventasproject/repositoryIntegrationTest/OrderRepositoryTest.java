@@ -3,6 +3,7 @@ package app.ventasproject.repositoryIntegrationTest;
 import app.ventasproject.Enum.StatusEnum;
 import app.ventasproject.models.Client;
 import app.ventasproject.models.Order;
+import app.ventasproject.models.OrderItem;
 import app.ventasproject.repositorys.OrderRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,8 +13,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @Testcontainers
@@ -62,5 +64,33 @@ public class OrderRepositoryTest {
         List<Order> foundOrders = orderRepository.FindClientAndStatus(client1.getId(), StatusEnum.ENVIADO.name());
 
         assertEquals(1, foundOrders.size());
+    }
+
+    @Test
+    void deleteOrderbyID(){
+        Order order = Order.builder().build();
+
+        orderRepository.save(order);
+
+        orderRepository.deleteById(order.getId());
+
+        assertFalse(orderRepository.existsById(order.getId()));
+    }
+
+    @Test
+    void updateStatusOrder(){
+        Order order1 = Order.builder()
+                .status(StatusEnum.ENVIADO).build();
+
+        orderRepository.save(order1);
+
+        Order updatedOrder = orderRepository.findById(order1.getId()).get();
+
+        updatedOrder.setStatus(StatusEnum.ENTREGADO);
+
+        assertNotNull(updatedOrder);
+        assertEquals(StatusEnum.ENTREGADO, updatedOrder.getStatus());
+
+        assertNotEquals(order1.getStatus(), updatedOrder.getStatus());
     }
 }
