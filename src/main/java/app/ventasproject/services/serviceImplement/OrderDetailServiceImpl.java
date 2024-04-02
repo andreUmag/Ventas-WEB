@@ -61,7 +61,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         OrderDetail orderDetail = orderDetailRepository.findOrderDetailByOrderId(orderId);
         if(Objects.isNull(orderDetail))
             throw new NotFoundException("No encontrado");
-        return OrderDetailMapper.INSTANCE.orderDetailEntitytoOrderDetailDto(orderDetail);
+        return orderDetailMapper.orderDetailEntitytoOrderDetailDto(orderDetail);
     }
 
     @Override

@@ -18,6 +18,6 @@ public class Product {
     private Float price;
     private Integer stock;
 
-    @OneToMany(mappedBy = "products")
+    @OneToMany(mappedBy = "product")
     List<OrderItem> orderItems;
 }

@@ -25,9 +25,9 @@ public class Order {
     @OneToOne(mappedBy = "order")
     Payment payment;
 
-    @OneToMany(mappedBy = "orders")
+    @OneToMany(mappedBy = "order")
     List<OrderDetail> orderDetails;
 
-    @OneToMany(mappedBy = "orders")
+    @OneToMany(mappedBy = "order")
     List<OrderItem> orderItems;
 }

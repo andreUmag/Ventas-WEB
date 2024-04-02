@@ -8,6 +8,7 @@ import app.ventasproject.models.Client;
 import app.ventasproject.repositories.ClientRepository;
 import app.ventasproject.services.serviceInterface.ClientService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -62,15 +63,20 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<ClientDto> searchClientByAddressCity(String city) throws NotFoundException {
-        List<Client> clients = clientRepository.findCityByAddress(city);
-        if(clients.isEmpty()) throw new NotFoundException("No encontrado");
-        return clients.stream().map(client -> clientMapper.clientEntitytoClientDto(client)).toList();
+    public List<ClientDto> searchClientByAddressCity(String address) throws NotFoundException {
+        List<Client> clients = clientRepository.findClientByAddress(address);
+        if(Objects.isNull(clients) || clients.isEmpty())
+            throw new NotFoundException("No encontrado");
+        return Collections.singletonList(clientMapper.clientEntitytoClientDto(clients.get(0)));
     }
+
 
     @Override
     public void deleteClient(Long id) {
-        Client client = clientRepository.findById(id).orElseThrow();
+        Client client = clientRepository.findById(id).orElse(null);
+        if (client == null) {
+            throw new NotFoundException("No encontrado");
+        }
         clientRepository.delete(client);
     }
 }
