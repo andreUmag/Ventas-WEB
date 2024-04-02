@@ -4,8 +4,6 @@ import app.ventasproject.dtos.orderItem.OrderItemDto;
 import app.ventasproject.dtos.orderItem.OrderItemToSaveDto;
 import app.ventasproject.exceptions.NotAbleToDeleteException;
 import app.ventasproject.exceptions.NotFoundException;
-import app.ventasproject.models.OrderItem;
-import app.ventasproject.services.serviceInterface.ClientService;
 import app.ventasproject.services.serviceInterface.OrderItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
