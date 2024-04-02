@@ -60,7 +60,7 @@ public class OrderItemRepositoryTest {
 
         orderItemRepository.save(orderItem1);
 
-        List<OrderItem> foundItems = orderItemRepository.findOrderItemByProduct(orderItem1.getProduct());
+        List<OrderItem> foundItems = orderItemRepository.findOrderItemByProduct(orderItem1.getProduct().getId());
 
         assertEquals(1, foundItems.size());
     }

@@ -28,8 +28,15 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientDto updateClient(Long id, ClientToSaveDto client) {
-        return null;
+    public ClientDto updateClient(Long id, ClientToSaveDto clientDto) {
+        return clientRepository.findById(id).map(client -> {
+            client.setName(clientDto.name());
+            client.setEmail(clientDto.email());
+            client.setAddress(clientDto.address());
+            Client clientSaved = clientRepository.save(client);
+
+            return clientMapper.clientEntitytoClientDto(clientSaved);
+        }).orElseThrow(() -> new NotFoundException("No encontrado"));
     }
 
     @Override
@@ -55,15 +62,15 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientDto searchClientByAddressCity(String address) throws NotFoundException {
+    public List<ClientDto> searchClientByAddressCity(String address) throws NotFoundException {
         List<Client> clients = clientRepository.findClientByAddress(address);
-        if(Objects.isNull(clients))
+        if(clients.isEmpty())
             throw new NotFoundException("No encontrado");
-        return clientMapper.clientEntitytoClientDto(clients.get(0));
+        return clients.stream()
+                .map(client -> clientMapper.clientEntitytoClientDto(client)).toList();
     }
 
     @Override
-    //falta agregar NotAbleToDeleteException
     public void removeClient(Long id) {
         Client client = clientRepository.findById(id).orElseThrow();
         clientRepository.delete(client);

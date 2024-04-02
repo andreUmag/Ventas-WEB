@@ -29,8 +29,17 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     }
 
     @Override
-    public OrderDetailDto updateOrderDetail(Long id, OrderDetailToSaveDto orderDetail) {
-        return null;
+    public OrderDetailDto updateOrderDetail(Long id, OrderDetailToSaveDto orderDetailDto) {
+        return orderDetailRepository.findById(id)
+                .map(orderDetail -> {
+                    orderDetail.setAddressOrder(orderDetailDto.addressOrder());
+                    orderDetail.setTransporter(orderDetailDto.transporter());
+                    orderDetail.setGuide(orderDetailDto.guide());
+
+                    OrderDetail orderDetailSave = orderDetailRepository.save(orderDetail);
+
+                    return orderDetailMapper.orderDetailEntitytoOrderDetailDto(orderDetailSave);
+                }).orElseThrow(() -> new NotFoundException("No encontrado."));
     }
 
     @Override
@@ -48,19 +57,19 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     }
 
     @Override
-    public OrderDetailDto searchOrderDetailByOrderId(Order orderId) {
-        OrderDetail orderDetail = orderDetailRepository.findOrderDetailByOrder(orderId);
+    public OrderDetailDto searchOrderDetailByOrderId(Long orderId) {
+        OrderDetail orderDetail = orderDetailRepository.findOrderDetailByOrderId(orderId);
         if(Objects.isNull(orderDetail))
             throw new NotFoundException("No encontrado");
         return OrderDetailMapper.INSTANCE.orderDetailEntitytoOrderDetailDto(orderDetail);
     }
 
     @Override
-    public OrderDetailDto serachOrderDetailByTransporter(String transporter) {
-        OrderDetail orderDetail = orderDetailRepository.findOrderDetailByTransporter(transporter);
-        if(Objects.isNull(orderDetail))
-            throw new NotFoundException("No encontrado");
-        return OrderDetailMapper.INSTANCE.orderDetailEntitytoOrderDetailDto(orderDetail);
+    public List<OrderDetailDto> serachOrderDetailByTransporter(String transporter) {
+        return  orderDetailRepository.findOrderDetailByTransporter(transporter)
+                .stream()
+                .map(detalleEnvio -> orderDetailMapper.orderDetailEntitytoOrderDetailDto(detalleEnvio))
+                .toList();
     }
 
     @Override

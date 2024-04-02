@@ -3,11 +3,15 @@ package app.ventasproject.services.serviceImplement;
 import app.ventasproject.dtos.orderItem.OrderItemDto;
 import app.ventasproject.dtos.orderItem.OrderItemMapper;
 import app.ventasproject.dtos.orderItem.OrderItemToSaveDto;
+import app.ventasproject.exceptions.NotFoundException;
+import app.ventasproject.models.OrderDetail;
 import app.ventasproject.models.OrderItem;
 import app.ventasproject.repositories.OrderItemRepository;
 import app.ventasproject.services.serviceInterface.OrderItemService;
 
 import java.util.List;
+
+import static java.util.Arrays.stream;
 
 public class OrderItemServiceImpl implements OrderItemService {
     private  final OrderItemMapper orderItemMapper;
@@ -26,8 +30,15 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public OrderItemDto updateOrderItem(Long id, OrderItemToSaveDto orderItem) {
-        return null;
+    public OrderItemDto updateOrderItem(Long id, OrderItemToSaveDto orderItemDto) {
+        return orderItemRepository.findById(id)
+                .map(orderItem -> {
+                    orderItem.setUnitPrice(orderItemDto.unitPrice());
+                    orderItem.setQuantity(orderItemDto.quantity());
+                    OrderItem orderItemSave = orderItemRepository.save(orderItem);
+
+                    return orderItemMapper.orderItemEntitytoOrderItemDto(orderItemSave);
+                }).orElseThrow(() -> new NotFoundException("No encontrado."));
     }
 
     @Override
@@ -46,12 +57,17 @@ public class OrderItemServiceImpl implements OrderItemService {
 
     @Override
     public List<OrderItemDto> searchOrderItemByOrderId(Long id) {
-        return null;
+        return orderItemRepository.findOrderItemByOrder(id)
+                .stream()
+                .map(orderItem -> orderItemMapper.orderItemEntitytoOrderItemDto(orderItem))
+                .toList();
     }
-
     @Override
     public List<OrderItemDto> searchOrderItemByProductId(Long id) {
-        return null;
+        return orderItemRepository.findOrderItemByProduct(id)
+                .stream()
+                .map(orderItem -> orderItemMapper.orderItemEntitytoOrderItemDto(orderItem))
+                .toList();
     }
 
     @Override

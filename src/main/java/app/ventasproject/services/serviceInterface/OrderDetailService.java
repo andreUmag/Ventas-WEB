@@ -11,7 +11,7 @@ public interface OrderDetailService {
     OrderDetailDto updateOrderDetail(Long id, OrderDetailToSaveDto orderDetail);
     OrderDetailDto searchOrderDetailById(Long id) throws NotFoundException;
     List<OrderDetailDto> getAllOrderDetail();
-    OrderDetailDto searchOrderDetailByOrderId(Order orderId);
-    OrderDetailDto serachOrderDetailByTransporter(String transporter);
+    OrderDetailDto searchOrderDetailByOrderId(Long orderId);
+    List<OrderDetailDto> serachOrderDetailByTransporter(String transporter);
     void removeOrderDetail(Long id);
 }
