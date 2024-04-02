@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/shipping")
 public class OrderDetailController {
-    private static final Logger logger = LoggerFactory.getLogger(ClientController.class);
+    private static final Logger logger = LoggerFactory.getLogger(OrderDetailController.class);
     private final OrderDetailService orderDetailService;
     @Autowired
     public OrderDetailController(OrderDetailService orderDetailService) {

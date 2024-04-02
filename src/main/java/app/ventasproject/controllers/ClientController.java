@@ -75,7 +75,7 @@ public class ClientController {
             return ResponseEntity.notFound().build();
         }
     }
-    public ResponseEntity<String> deleteCliente(@PathVariable("id") Long id){
+    public ResponseEntity<String> deleteClient(@PathVariable("id") Long id){
         try {
             clientService.deleteClient(id);
             return ResponseEntity.ok().body("eliminado.");
