@@ -3,9 +3,10 @@ import app.ventasproject.dtos.orderDetail.OrderDetailDto;
 import app.ventasproject.dtos.orderDetail.OrderDetailToSaveDto;
 import app.ventasproject.exceptions.NotFoundException;
 import app.ventasproject.models.Order;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public interface OrderDetailService {
     OrderDetailDto saveOrderDetail(OrderDetailToSaveDto orderDetail);
     OrderDetailDto updateOrderDetail(Long id, OrderDetailToSaveDto orderDetail);
@@ -13,5 +14,5 @@ public interface OrderDetailService {
     List<OrderDetailDto> getAllOrderDetail();
     OrderDetailDto searchOrderDetailByOrderId(Long orderId);
     List<OrderDetailDto> serachOrderDetailByTransporter(String transporter);
-    void removeOrderDetail(Long id);
+    void deleteOrderDetail(Long id);
 }

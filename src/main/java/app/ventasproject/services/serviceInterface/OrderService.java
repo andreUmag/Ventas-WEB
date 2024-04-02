@@ -3,10 +3,11 @@ package app.ventasproject.services.serviceInterface;
 import app.ventasproject.dtos.order.OrderDto;
 import app.ventasproject.dtos.order.OrderToSaveDto;
 import app.ventasproject.exceptions.NotFoundException;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+@Component
 public interface OrderService {
     OrderDto saveOrder(OrderToSaveDto order);
     OrderDto updateOrder(Long id, OrderToSaveDto order);

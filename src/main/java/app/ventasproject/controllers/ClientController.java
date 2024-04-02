@@ -77,7 +77,7 @@ public class ClientController {
     }
     public ResponseEntity<String> deleteCliente(@PathVariable("id") Long id){
         try {
-            clientService.removeClient(id);
+            clientService.deleteClient(id);
             return ResponseEntity.ok().body("eliminado.");
         } catch (NotAbleToDeleteException e) {
             return ResponseEntity.notFound().build();

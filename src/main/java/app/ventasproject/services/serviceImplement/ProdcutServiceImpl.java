@@ -71,7 +71,7 @@ public class ProdcutServiceImpl implements ProductService {
     }
 
     @Override
-    public void removeProduct(Long id) {
+    public void deleteProduct(Long id) {
         Product product = productRepository.findById(id).orElseThrow();
         productRepository.delete(product);
     }

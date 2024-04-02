@@ -73,7 +73,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     }
 
     @Override
-    public void removeOrderDetail(Long id) {
+    public void deleteOrderDetail(Long id) {
         OrderDetail orderDetail = orderDetailRepository.findById(id).orElseThrow();
         orderDetailRepository.delete(orderDetail);
     }

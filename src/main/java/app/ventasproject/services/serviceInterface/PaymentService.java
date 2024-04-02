@@ -5,10 +5,11 @@ import app.ventasproject.dtos.payment.PaymentDto;
 import app.ventasproject.dtos.payment.PaymentToSaveDto;
 import app.ventasproject.exceptions.NotFoundException;
 import app.ventasproject.models.Order;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+@Component
 public interface PaymentService {
     PaymentDto savePayments(PaymentToSaveDto payment);
     PaymentDto updatePatyment(Long id, PaymentToSaveDto payment);

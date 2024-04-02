@@ -71,7 +71,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public void removeOrderItem(Long Id) {
+    public void deleteOrderItem(Long Id) {
         OrderItem orderItem = orderItemRepository.findById(Id).orElseThrow();
         orderItemRepository.delete(orderItem);
     }
