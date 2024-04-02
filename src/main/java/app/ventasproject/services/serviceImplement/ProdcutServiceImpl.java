@@ -27,8 +27,17 @@ public class ProdcutServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto updateProduct(Long id, ProductToSaveDto product) {
-        return null;
+    public ProductDto updateProduct(Long id, ProductToSaveDto productDto) {
+        return productRepository.findById(id)
+                .map(product -> {
+                    product.setName(productDto.name());
+                    product.setPrice(productDto.price());
+                    product.setStock(productDto.stock());
+
+                    Product productSave = productRepository.save(product);
+
+                    return productMapper.productEntitytoProductDto(productSave);
+                }).orElseThrow(() -> new NotFoundException("Producto no encontrado."));
     }
 
     @Override

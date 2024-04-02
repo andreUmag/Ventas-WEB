@@ -14,7 +14,7 @@ public interface PaymentService {
     PaymentDto updatePatyment(Long id, PaymentToSaveDto payment);
     PaymentDto searchPaymentById(Long id) throws NotFoundException;
     List<PaymentDto> getAllPayment();
-    PaymentDto searchPaymentByOrderId(Order id);// no estoy seguro
+    PaymentDto searchPaymentByOrderId(Long id) throws NotFoundException;
     List<PaymentDto> sarchByIntoDates(LocalDateTime date);
     void deletePayment(Long id);
 }

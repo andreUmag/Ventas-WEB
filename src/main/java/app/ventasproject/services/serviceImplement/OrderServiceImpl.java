@@ -29,8 +29,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDto updateOrder(Long id, OrderToSaveDto order) {
-        return null;
+    public OrderDto updateOrder(Long id, OrderToSaveDto orderDto) {
+        return orderRepository.findById(id)
+                .map(order->{
+                            order.setOrderDate(orderDto.orderDate());
+                            order.setStatus(orderDto.status());
+                            Order orderSaved = orderRepository.save(order);
+
+                            return orderMapper.orderEntitytoOrderDto(orderSaved);
+                        }
+                ).orElseThrow(() -> new NotFoundException("Pedido no encontrado."));
     }
 
     @Override
@@ -42,6 +50,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDto> getAllOrder() {
         List<Order> orders = orderRepository.findAll();
+        return orders.stream()
+                .map(order -> orderMapper.orderEntitytoOrderDto(order))
+                .toList();
+    }
+
+    @Override
+    public List<OrderDto> searchByClientId(Long id) {
+        List<Order> orders = orderRepository.findOrdersByClientId(id);
         return orders.stream()
                 .map(order -> orderMapper.orderEntitytoOrderDto(order))
                 .toList();

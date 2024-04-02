@@ -16,5 +16,5 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     @Query("SELECT p FROM Payment p WHERE p.order = ?1 AND p.method in ?2")
     Payment FindByOrderAndMethod(Long id, String method);
     @Query("SELECT P FROM Payment P WHERE P.order = ?1")
-    Payment FindByOrderId(Order id);
+    Payment FindByOrderId(Long id);
 }

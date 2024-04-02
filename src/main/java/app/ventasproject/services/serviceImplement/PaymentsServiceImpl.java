@@ -29,8 +29,16 @@ public class PaymentsServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentDto updatePatyment(Long id, PaymentToSaveDto payment) {
-        return null;
+    public PaymentDto updatePatyment(Long id, PaymentToSaveDto paymentDto) {
+        return paymentRepository.findById(id).
+                map( payment -> {
+                            payment.setDatePayment(paymentDto.datePayment());
+                            payment.setMethod(paymentDto.method());
+                            payment.setTotalPayment(paymentDto.totalPayment());
+                            Payment paymentSave = paymentRepository.save(payment);
+                            return  paymentMapper.paymentEntitytoOPaymentDto(paymentSave);
+                        }
+                ).orElseThrow(() -> new NotFoundException("Pago no encontrado."));
     }
 
     @Override
@@ -48,13 +56,17 @@ public class PaymentsServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentDto searchPaymentByOrderId(Order id) {
-        return null;
+    public PaymentDto searchPaymentByOrderId(Long id){
+        Payment payment = paymentRepository.FindByOrderId(id);
+        return paymentMapper.paymentEntitytoOPaymentDto(payment);
     }
 
     @Override
     public List<PaymentDto> sarchByIntoDates(LocalDateTime date) {
-        return null;
+        return paymentRepository.FindByIntoDates(date)
+                .stream()
+                .map(payment -> paymentMapper.paymentEntitytoOPaymentDto(payment))
+                .toList();
     }
 
     @Override

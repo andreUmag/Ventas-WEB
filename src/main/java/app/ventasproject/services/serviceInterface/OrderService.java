@@ -12,9 +12,7 @@ public interface OrderService {
     OrderDto updateOrder(Long id, OrderToSaveDto order);
     OrderDto searchOrderById(Long id) throws NotFoundException;
     List<OrderDto> getAllOrder();
-
-    //no se que es el customer
-
+    List<OrderDto> searchByClientId(Long id);
     List<OrderDto> searchBetweenDates(LocalDateTime date, LocalDateTime date2);
     void deleteOrder(Long id);
 }
