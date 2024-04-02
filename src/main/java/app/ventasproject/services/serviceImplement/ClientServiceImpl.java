@@ -64,10 +64,8 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public List<ClientDto> searchClientByAddressCity(String address) throws NotFoundException {
         List<Client> clients = clientRepository.findClientByAddress(address);
-        if(clients.isEmpty())
-            throw new NotFoundException("No encontrado");
-        return clients.stream()
-                .map(client -> clientMapper.clientEntitytoClientDto(client)).toList();
+        if(clients.isEmpty()) throw new NotFoundException("No encontrado");
+        return clients.stream().map(client -> clientMapper.clientEntitytoClientDto(client)).toList();
     }
 
     @Override
