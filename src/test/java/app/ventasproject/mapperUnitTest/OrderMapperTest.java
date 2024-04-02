@@ -1,8 +1,8 @@
 package app.ventasproject.mapperUnitTest;
 
 import app.ventasproject.Enum.StatusEnum;
-import app.ventasproject.dto.order.OrderDto;
-import app.ventasproject.dto.order.OrderMapper;
+import app.ventasproject.dtos.order.OrderDto;
+import app.ventasproject.dtos.order.OrderMapper;
 import app.ventasproject.models.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

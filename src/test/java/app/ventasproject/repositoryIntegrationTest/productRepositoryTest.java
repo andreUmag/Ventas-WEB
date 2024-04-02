@@ -1,13 +1,11 @@
 package app.ventasproject.repositoryIntegrationTest;
 
-import app.ventasproject.models.Payment;
 import app.ventasproject.models.Product;
-import app.ventasproject.repositorys.ProductRepository;
+import app.ventasproject.repositories.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.List;

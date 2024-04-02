@@ -4,7 +4,7 @@ import app.ventasproject.Enum.StatusEnum;
 import app.ventasproject.models.Order;
 import app.ventasproject.models.OrderItem;
 import app.ventasproject.models.Product;
-import app.ventasproject.repositorys.OrderItemRepository;
+import app.ventasproject.repositories.OrderItemRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

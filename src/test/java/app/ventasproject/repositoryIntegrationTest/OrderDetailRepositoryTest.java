@@ -1,17 +1,14 @@
 package app.ventasproject.repositoryIntegrationTest;
 
 import app.ventasproject.Enum.StatusEnum;
-import app.ventasproject.models.Client;
 import app.ventasproject.models.Order;
 import app.ventasproject.models.OrderDetail;
-import app.ventasproject.repositorys.OrderDetailRepository;
+import app.ventasproject.repositories.OrderDetailRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 

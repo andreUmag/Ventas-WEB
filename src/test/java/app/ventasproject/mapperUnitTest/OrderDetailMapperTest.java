@@ -1,7 +1,7 @@
 package app.ventasproject.mapperUnitTest;
 
-import app.ventasproject.dto.orderDetail.OrderDetailDto;
-import app.ventasproject.dto.orderDetail.OrderDetailMapper;
+import app.ventasproject.dtos.orderDetail.OrderDetailDto;
+import app.ventasproject.dtos.orderDetail.OrderDetailMapper;
 import app.ventasproject.models.OrderDetail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

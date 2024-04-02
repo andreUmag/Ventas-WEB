@@ -1,8 +1,8 @@
 package app.ventasproject.mapperUnitTest;
 
 import app.ventasproject.Enum.MethodsEnum;
-import app.ventasproject.dto.payment.PaymentDto;
-import app.ventasproject.dto.payment.PaymentMapper;
+import app.ventasproject.dtos.payment.PaymentDto;
+import app.ventasproject.dtos.payment.PaymentMapper;
 import app.ventasproject.models.Payment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

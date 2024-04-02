@@ -1,7 +1,7 @@
 package app.ventasproject.mapperUnitTest;
 
-import app.ventasproject.dto.product.ProductDto;
-import app.ventasproject.dto.product.ProductMapper;
+import app.ventasproject.dtos.product.ProductDto;
+import app.ventasproject.dtos.product.ProductMapper;
 import app.ventasproject.models.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

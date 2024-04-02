@@ -3,8 +3,7 @@ package app.ventasproject.repositoryIntegrationTest;
 import app.ventasproject.Enum.StatusEnum;
 import app.ventasproject.models.Client;
 import app.ventasproject.models.Order;
-import app.ventasproject.models.OrderItem;
-import app.ventasproject.repositorys.OrderRepository;
+import app.ventasproject.repositories.OrderRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 

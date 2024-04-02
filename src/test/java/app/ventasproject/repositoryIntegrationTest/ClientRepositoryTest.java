@@ -1,7 +1,7 @@
 package app.ventasproject.repositoryIntegrationTest;
 
 import app.ventasproject.models.Client;
-import app.ventasproject.repositorys.ClientRepository;
+import app.ventasproject.repositories.ClientRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
