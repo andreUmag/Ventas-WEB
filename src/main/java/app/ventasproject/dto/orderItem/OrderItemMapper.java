@@ -8,4 +8,5 @@ public interface OrderItemMapper {
     OrderItemMapper INSTANCE = Mappers.getMapper(OrderItemMapper.class);
     OrderItemDto orderItemEntitytoOrderItemDto(OrderItem orderItem);
     OrderItem orderItemDtotoOrderItemEntity(OrderItemDto orderItemDto);
+    OrderItem orderItemToSaveDToToEntity(OrderItemToSaveDto orderItem);
 }
