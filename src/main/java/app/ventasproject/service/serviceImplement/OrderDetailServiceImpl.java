@@ -23,7 +23,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     @Override
     public OrderDetailDto saveOrderDetail(OrderDetailToSaveDto orderDetailDto) {
-        OrderDetail orderDetail = OrderDetailMapper.INSTANCE.orderDetailToSaveDToToEntity(orderDetailDto);
+        OrderDetail orderDetail = orderDetailMapper.orderDetailToSaveDToToEntity(orderDetailDto);
         OrderDetail orderDetailSaved = orderDetailRepository.save(orderDetail);
         return orderDetailMapper.orderDetailEntitytoOrderDetailDto(orderDetailSaved);
     }
