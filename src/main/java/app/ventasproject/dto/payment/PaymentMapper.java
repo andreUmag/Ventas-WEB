@@ -8,4 +8,5 @@ public interface PaymentMapper {
     PaymentMapper INSTANCE = Mappers.getMapper(PaymentMapper.class);
     PaymentDto paymentEntitytoOPaymentDto(Payment payment);
     Payment paymentDtotoPaymentEntity(PaymentDto paymentDto);
+    Payment paymentToSaveDToToEntity(PaymentToSaveDto payment);
 }

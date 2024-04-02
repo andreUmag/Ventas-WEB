@@ -10,6 +10,6 @@ public interface ClientService {
     ClientDto searchClientById(Long id) throws NotFoundException;
     List<ClientDto> getAllClient();
     ClientDto searchClientByEmail(String email) throws NotFoundException;
-    ClientDto searchClientByAddresCity(String addres) throws NotFoundException;
+    ClientDto searchClientByAddressCity(String addres) throws NotFoundException;
     void removeClient(Long id);
 }

@@ -1,5 +1,6 @@
 package app.ventasproject.repositorys;
 
+import app.ventasproject.models.Order;
 import app.ventasproject.models.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,4 +15,6 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     List<Payment> FindByIntoDates(LocalDateTime date);
     @Query("SELECT p FROM Payment p WHERE p.order = ?1 AND p.method in ?2")
     Payment FindByOrderAndMethod(Long id, String method);
+    @Query("SELECT P FROM Payment P WHERE P.order = ?1")
+    Payment FindByOrderId(Order id);
 }

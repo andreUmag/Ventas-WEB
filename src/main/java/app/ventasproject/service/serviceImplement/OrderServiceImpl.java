@@ -49,7 +49,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDto> searchBetweenDates(LocalDateTime date, LocalDateTime date2) {
-        return null;
+        List<Order> orders = orderRepository.FindIntoDate(date, date2);
+        return orders.stream()
+                .map(order -> orderMapper.orderEntitytoOrderDto(order))
+                .toList();
     }
 
     @Override
