@@ -12,10 +12,10 @@ import java.util.List;
 @Component
 public interface PaymentService {
     PaymentDto savePayments(PaymentToSaveDto payment);
-    PaymentDto updatePatyment(Long id, PaymentToSaveDto payment);
+    PaymentDto updatePayment(Long id, PaymentToSaveDto payment);
     PaymentDto searchPaymentById(Long id) throws NotFoundException;
     List<PaymentDto> getAllPayment();
     PaymentDto searchPaymentByOrderId(Long id) throws NotFoundException;
-    List<PaymentDto> sarchByIntoDates(LocalDateTime date);
+    List<PaymentDto> searchByIntoDates(LocalDateTime date);
     void deletePayment(Long id);
 }

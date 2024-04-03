@@ -64,12 +64,6 @@ public class clientServiceImplUnitTest {
     void givenClient_whenSaveClient_thenReturnSavedClient() {
         given(clientRepository.save(any())).willReturn(client);
 
-        clientToSaveDto = new ClientToSaveDto(
-                1L,
-                "test",
-                "test1",
-                "123");
-
         when(clientMapper.clientEntitytoClientDto(any())).thenReturn(clientDto);
 
         ClientDto clientDto = clientService.saveClient(clientToSaveDto);

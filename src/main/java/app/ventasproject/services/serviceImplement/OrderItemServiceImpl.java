@@ -56,18 +56,23 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public List<OrderItemDto> searchOrderItemByOrderId(Long id) {
-        return orderItemRepository.findOrderItemByOrder(id)
-                .stream()
+    public List<OrderItemDto> searchOrderItemByOrderId(Long id) throws NotFoundException {
+        List<OrderItem> orderItems = orderItemRepository.findOrderItemByOrder(id);
+        if (orderItems.isEmpty()) {
+            throw new NotFoundException("No encontrado");
+        }return orderItems.stream()
                 .map(orderItem -> orderItemMapper.orderItemEntitytoOrderItemDto(orderItem))
                 .toList();
     }
     @Override
-    public List<OrderItemDto> searchOrderItemByProductId(Long id) {
-        return orderItemRepository.findOrderItemByProduct(id)
-                .stream()
-                .map(orderItem -> orderItemMapper.orderItemEntitytoOrderItemDto(orderItem))
-                .toList();
+    public List<OrderItemDto> searchOrderItemByProductId(Long id) throws NotFoundException {
+        List<OrderItem> orderItems = orderItemRepository.findOrderItemByProduct(id);
+        if (orderItems.isEmpty()) {
+            throw new NotFoundException("No encontrado");
+        }return orderItems.stream()
+                    .map(orderItem -> orderItemMapper.orderItemEntitytoOrderItemDto(orderItem))
+                    .toList();
+
     }
 
     @Override

@@ -48,7 +48,7 @@ public class PaymentController {
     @PutMapping("/{id}")
     public ResponseEntity<PaymentDto> updatePayment(@PathVariable("id") Long id, @RequestBody PaymentToSaveDto paymentSaveDto){
         try {
-            PaymentDto paymentUpdate = paymentService.updatePatyment(id, paymentSaveDto);
+            PaymentDto paymentUpdate = paymentService.updatePayment(id, paymentSaveDto);
             return ResponseEntity.ok().body(paymentUpdate);
         }catch (NotFoundException e){
             return ResponseEntity.notFound().build();
@@ -66,7 +66,7 @@ public class PaymentController {
 
     @GetMapping("/date-range")
     public ResponseEntity<List<PaymentDto>> searchPaymentIntoDate(@RequestParam("startDate") LocalDateTime Date){
-        List<PaymentDto> paymentDtoList = paymentService.sarchByIntoDates(Date);
+        List<PaymentDto> paymentDtoList = paymentService.searchByIntoDates(Date);
         return ResponseEntity.ok().body(paymentDtoList);
     }
 

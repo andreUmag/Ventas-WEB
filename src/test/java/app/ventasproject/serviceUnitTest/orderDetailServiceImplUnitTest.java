@@ -102,9 +102,9 @@ public class orderDetailServiceImplUnitTest {
         when(orderDetailRepository.findAll()).thenReturn(orderDetails);
         when(orderDetailMapper.orderDetailEntitytoOrderDetailDto(orderDetail)).thenReturn(orderDetailDto);
 
-        List<OrderDetailDto> result =orderDetailService.getAllOrderDetail();
+        List<OrderDetailDto> allOrdersDetail =orderDetailService.getAllOrderDetail();
 
-        assertEquals(orderDetailDto, result.get(0));
+        assertEquals(orderDetailDto, allOrdersDetail.get(0));
     }
 
     @Test
