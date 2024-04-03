@@ -65,8 +65,8 @@ public class PaymentController {
     }
 
     @GetMapping("/date-range")
-    public ResponseEntity<List<PaymentDto>> searchPaymentIntoDate(@RequestParam("startDate") LocalDateTime Date){
-        List<PaymentDto> paymentDtoList = paymentService.searchByIntoDates(Date);
+    public ResponseEntity<List<PaymentDto>> searchPaymentIntoDate(@RequestParam("startDate") LocalDateTime Date,@RequestParam("endDate") LocalDateTime Date2){
+        List<PaymentDto> paymentDtoList = paymentService.searchByIntoDates(Date, Date2);
         return ResponseEntity.ok().body(paymentDtoList);
     }
 

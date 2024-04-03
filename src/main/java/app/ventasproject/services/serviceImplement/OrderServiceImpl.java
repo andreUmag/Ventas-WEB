@@ -10,7 +10,9 @@ import app.ventasproject.services.serviceInterface.OrderService;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrderServiceImpl implements OrderService {
     private final OrderMapper orderMapper;
@@ -66,9 +68,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDto> searchBetweenDates(LocalDateTime date, LocalDateTime date2) {
         List<Order> orders = orderRepository.FindIntoDate(date, date2);
+        if (orders == null) {
+            return new ArrayList<>();
+        }
         return orders.stream()
-                .map(order -> orderMapper.orderEntitytoOrderDto(order))
-                .toList();
+                .map(order -> orderMapper.orderEntitytoOrderDto(order)).collect(Collectors.toList());
+
     }
 
     @Override

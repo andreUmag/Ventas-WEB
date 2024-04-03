@@ -34,6 +34,7 @@ public class PaymentRepositoryTest {
     @Test
     void findPaymentsIntoDates(){
         LocalDateTime Date1 = LocalDateTime.of(2022,1,1,0,0);
+        LocalDateTime Date2 = LocalDateTime.of(2023,2,1,0,0);
 
         LocalDateTime datePayment = LocalDateTime.of(2023,8,4,0,0);
         Payment payment1 = Payment.builder()
@@ -42,7 +43,7 @@ public class PaymentRepositoryTest {
 
         paymentRepository.save(payment1);
 
-        List<Payment> foundPayments = paymentRepository.FindByIntoDates(Date1);
+        List<Payment> foundPayments = paymentRepository.FindByIntoDates(Date1, Date2);
 
         assertEquals(1,foundPayments.size());
     }

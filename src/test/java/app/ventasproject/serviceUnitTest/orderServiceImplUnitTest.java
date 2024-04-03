@@ -26,8 +26,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
@@ -134,7 +133,7 @@ public class orderServiceImplUnitTest {
     }
 
     @Test
-    void testSearchBetweenDates(){
+    void testSearchBetweenDates() {
         LocalDateTime date1 = LocalDateTime.now();
         LocalDateTime date2 = LocalDateTime.now().withYear(2022);
         List<Order> orders = new ArrayList<>();
@@ -144,6 +143,7 @@ public class orderServiceImplUnitTest {
 
         List<OrderDto> result = orderService.searchBetweenDates(date1, date2);
 
+        assertNotNull(result);
         assertEquals(1, result.size());
     }
     @Test

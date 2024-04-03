@@ -12,7 +12,7 @@ import app.ventasproject.services.serviceInterface.PaymentService;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class PaymentsServiceImpl implements PaymentService {
+public  class PaymentsServiceImpl implements PaymentService {
     private final PaymentMapper paymentMapper;
     private final PaymentRepository paymentRepository;
 
@@ -56,15 +56,18 @@ public class PaymentsServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentDto searchPaymentByOrderId(Long id){
+    public PaymentDto searchPaymentByOrderId(Long id) throws NotFoundException{
         Payment payment = paymentRepository.FindByOrderId(id);
+        if(payment == null){
+            throw new NotFoundException("No encontrado");
+        }
         return paymentMapper.paymentEntitytoOPaymentDto(payment);
     }
 
     @Override
-    public List<PaymentDto> searchByIntoDates(LocalDateTime date) {
-        return paymentRepository.FindByIntoDates(date)
-                .stream()
+    public List<PaymentDto> searchByIntoDates(LocalDateTime date1, LocalDateTime date2) {
+        List<Payment> payments = paymentRepository.FindByIntoDates(date1, date2);
+        return payments.stream()
                 .map(payment -> paymentMapper.paymentEntitytoOPaymentDto(payment))
                 .toList();
     }

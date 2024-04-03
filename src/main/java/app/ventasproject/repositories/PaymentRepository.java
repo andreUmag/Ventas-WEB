@@ -11,8 +11,8 @@ import java.util.List;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
-    @Query("SELECT p FROM Payment p WHERE p.datePayment BETWEEN CURRENT_TIMESTAMP AND ?1")
-    List<Payment> FindByIntoDates(LocalDateTime date);
+    @Query("SELECT p FROM Payment p WHERE p.datePayment BETWEEN ?1 AND ?2")
+    List<Payment> FindByIntoDates(LocalDateTime date, LocalDateTime date2);
     @Query("SELECT p FROM Payment p WHERE p.order = ?1 AND p.method in ?2")
     Payment FindByOrderAndMethod(Long id, String method);
     @Query("SELECT P FROM Payment P WHERE P.order = ?1")
