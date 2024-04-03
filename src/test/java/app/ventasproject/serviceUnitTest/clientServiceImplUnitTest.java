@@ -3,6 +3,7 @@ package app.ventasproject.serviceUnitTest;
 import app.ventasproject.dtos.client.ClientDto;
 import app.ventasproject.dtos.client.ClientMapper;
 import app.ventasproject.dtos.client.ClientToSaveDto;
+import app.ventasproject.dtos.orderItem.OrderItemDto;
 import app.ventasproject.exceptions.NotFoundException;
 import app.ventasproject.models.Client;
 import app.ventasproject.repositories.ClientRepository;
@@ -38,6 +39,7 @@ public class clientServiceImplUnitTest {
 
     @InjectMocks
     private ClientServiceImpl clientService;
+
     private Client client, client2;
     private ClientDto clientDto, clientDto2;
     private ClientToSaveDto clientToSaveDto;
@@ -59,7 +61,7 @@ public class clientServiceImplUnitTest {
     }
 
     @Test
-    void givenUsuario_whenSaveUsuario_thenReturnUsuarioGuardado() {
+    void givenClient_whenSaveClient_thenReturnSavedClient() {
         given(clientRepository.save(any())).willReturn(client);
 
         clientToSaveDto = new ClientToSaveDto(
@@ -76,6 +78,16 @@ public class clientServiceImplUnitTest {
         assertThat(clientDto.id()).isEqualTo(1L);
     }
 
+    @Test
+    void testUpdateOrderDetail() {
+        given(clientRepository.findById(client.getId())).willReturn(Optional.of(client));
+
+        when(clientMapper.clientEntitytoClientDto(any())).thenReturn(clientDto);
+
+        ClientDto updatedClient = clientService.updateClient(client.getId(), clientToSaveDto);
+
+        assertEquals(clientDto, updatedClient);
+    }
     @Test
     void givenExistingClientId_whenSearchClientById_thenReturnClientDto() throws NotFoundException {
         given(clientRepository.findById(1L)).willReturn(Optional.ofNullable(client));
@@ -151,12 +163,12 @@ public class clientServiceImplUnitTest {
     @Test
     void removeClient_ExistingId_RemovesClient() {
         given(clientRepository.findById(1L)).willReturn(Optional.of(client));
-        assertDoesNotThrow(() -> clientService.removeClient(1L));
+        assertDoesNotThrow(() -> clientService.deleteClient(1L));
     }
 
     @Test
     void removeClient_NonExistingId_ThrowsNotFoundException() {
         given(clientRepository.findById(2L)).willReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () -> clientService.removeClient(2L));
+        assertThrows(NotFoundException.class, () -> clientService.deleteClient(2L));
     }
 }

@@ -42,8 +42,8 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public OrderItemDto searchOrderItemById(Long id) {//agregar Not found exception
-        OrderItem orderItem = orderItemRepository.findById(id).orElseThrow();
+    public OrderItemDto searchOrderItemById(Long id) throws NotFoundException {//agregar Not found exception
+        OrderItem orderItem = orderItemRepository.findById(id).orElseThrow(()-> new NotFoundException("No encontrado"));
         return orderItemMapper.orderItemEntitytoOrderItemDto(orderItem);
     }
 

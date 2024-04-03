@@ -53,7 +53,7 @@ public class orderDetailServiceImplUnitTest {
 
         orderDetailToSaveDto = new OrderDetailToSaveDto(1L, "test", "test1", "123");
 
-        orderDetailDto = new OrderDetailDto(1L,"cra 4" ,"deprisa","21a");
+        orderDetailDto = OrderDetailMapper.INSTANCE.orderDetailEntitytoOrderDetailDto(orderDetail);
     }
 
     @Test
@@ -142,6 +142,6 @@ public class orderDetailServiceImplUnitTest {
     void testRemoveOrderDetail() {
         when(orderDetailRepository.findById(orderDetail.getId())).thenReturn(Optional.of(orderDetail));
 
-        orderDetailService.removeOrderDetail(orderDetail.getId());
+        orderDetailService.deleteOrderDetail(orderDetail.getId());
     }
 }
