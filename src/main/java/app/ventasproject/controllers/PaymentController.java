@@ -37,7 +37,7 @@ public class PaymentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PaymentDto> getPayment(@PathVariable("id") long id){
+    public ResponseEntity<PaymentDto> getPaymentById(@PathVariable("id") long id){
         try {
             PaymentDto paymentDto = paymentService.searchPaymentById(id);
             return ResponseEntity.ok().body(paymentDto);
