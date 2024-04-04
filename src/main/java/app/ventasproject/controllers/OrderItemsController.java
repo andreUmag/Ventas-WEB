@@ -38,7 +38,7 @@ public class OrderItemsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderItemDto> getOrderItem(@PathVariable("id") long id){
+    public ResponseEntity<OrderItemDto> searchOrderItemById(@PathVariable("id") long id){
         try {
             OrderItemDto orderItemDto = orderItemService.searchOrderItemById(id);
             return ResponseEntity.ok().body(orderItemDto);
@@ -66,6 +66,8 @@ public class OrderItemsController {
         List<OrderItemDto> orderItemDtoList = orderItemService.searchOrderItemByProductId(Product);
         return ResponseEntity.ok().body(orderItemDtoList);
     }
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteOrderItem(@PathVariable("id") Long id){
         try {
             orderItemService.deleteOrderItem(id);

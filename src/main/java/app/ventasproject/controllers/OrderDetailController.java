@@ -24,7 +24,7 @@ public class OrderDetailController {
     }
 
     @PostMapping()
-    public ResponseEntity<OrderDetailDto> saveCliente(@RequestBody OrderDetailToSaveDto orderDetailSaveDto){
+    public ResponseEntity<OrderDetailDto> saveOrderDetail(@RequestBody OrderDetailToSaveDto orderDetailSaveDto){
         OrderDetailDto orderDetailCreated = orderDetailService.saveOrderDetail(orderDetailSaveDto);
         logger.info(orderDetailCreated.toString());
         return ResponseEntity.ok().body(orderDetailCreated);
