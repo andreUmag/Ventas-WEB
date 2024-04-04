@@ -26,7 +26,7 @@ public class ClientController {
     }
 
     @PostMapping()
-    public ResponseEntity<ClientDto> saveCliente(@RequestBody ClientToSaveDto clientSaveDto){
+    public ResponseEntity<ClientDto> saveClient(@RequestBody ClientToSaveDto clientSaveDto){
         ClientDto clientCreated = clientService.saveClient(clientSaveDto);
         logger.info(clientCreated.toString());
         return ResponseEntity.ok().body(clientCreated);
