@@ -17,6 +17,7 @@ public class Client {
     @Column(unique = true)
     private String email;
     private String address;
+    private String role;
 
     @OneToMany(mappedBy = "client")
     private List<Order> orders;
