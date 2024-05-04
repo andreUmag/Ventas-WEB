@@ -1,5 +1,6 @@
 package app.ventasproject.filter_security;
 
+import app.ventasproject.services.security.ClientInfoService;
 import app.ventasproject.services.security.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -17,9 +18,9 @@ import java.io.IOException;
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
-    private final UserInfoService userDetailsService;
+    private final ClientInfoService userDetailsService;
 
-    public JwtAuthFilter(JwtService jwtService, UserInfoService userDetailsService) {
+    public JwtAuthFilter(JwtService jwtService, ClientInfoService userDetailsService) {
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
     }

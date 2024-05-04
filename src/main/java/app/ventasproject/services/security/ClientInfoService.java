@@ -28,7 +28,7 @@ public class ClientInfoService implements UserDetailsService {
     }
 
     public ClientInfo addUser(ClientInfo clientInfo) {
-        Client client = new Client(null, clientInfo.name(), clientInfo.email(), passwordEncoder.encode(clientInfo.password()), clientInfo.roles());
+        Client client = new Client(null, clientInfo.name(), clientInfo.email(), passwordEncoder.encode(clientInfo.password()),null,clientInfo.roles(),null);
         client = clientRepository.save(client);
         return new ClientInfo(client.getName(), client.getEmail(), clientInfo.password(), client.getRole());
 
